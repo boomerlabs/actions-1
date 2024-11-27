@@ -7,7 +7,7 @@ jobs:
         steps:
             - run: sudo apt-get install cowsay -y
             - run: cowsay -f dragon "Run for cover, I am a DRAGON...RAWR" >> dragon.txt
-            - run: sleep 30
+            # - run: sleep 30
             - uses: actions/upload-artifact@v3
               with:
                 name: dragon-text-file
@@ -24,7 +24,7 @@ jobs:
 
     deploy_job:
         needs: test_job
-        runs-on: ubuntu-sleep
+        runs-on: ubuntu-latest
         steps:
             - uses: actions/download-artifact@v3
               with:
