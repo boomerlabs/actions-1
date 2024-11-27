@@ -11,7 +11,7 @@ jobs:
               run: ls
 
             - name: Checkout
-              run: actions/checkout@v4
+              uses: actions/checkout@v4
         
             - name: Read file
               run: cat README.md
