@@ -5,18 +5,19 @@ jobs:
     build_job:
         runs-on: ubuntu-latest
         steps:
-            - name: Install cowsay
-              run: sudo apt-get install cowsay -y
-            - name: Execute cowsay cmd
-              run: cowsay -f dragon "Run for cover, I am a DRAGON...RAWR" >> dragon.txt
-            - name: Sleep for 30 seconds
-              run: sleep 30
+            - run: sudo apt-get install cowsay -y
+            - run: cowsay -f dragon "Run for cover, I am a DRAGON...RAWR" >> dragon.txt
+            - run: sleep 30
+
     test_job:
+        needs: build_job
         runs-on: ubuntu-latest
         steps:
             - run: sleep 10
             - run: grep -i "dragon" dragon.txt
+
     deploy_job:
+        needs: test_job
         runs-on: ubuntu-sleep
         steps:
             - run: cat dragon.txt
